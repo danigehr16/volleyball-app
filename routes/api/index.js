@@ -1,5 +1,9 @@
-const path = require("path");
+const eventRoutes = require("./events");
 const router = require("express").Router();
+
+
+// event routes
+router.use("./events.js", eventRoutes);
 
 
 // For anything else, render the html page
