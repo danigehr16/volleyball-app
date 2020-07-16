@@ -1,4 +1,6 @@
 import React from 'react';
+
+import Events from "./components/pages/Events";
 // import Calendar from "./components/Calendar";
 import './App.css';
 
@@ -11,7 +13,7 @@ class App extends React.Component {
           <div id="logo">
             <span className="icon"></span>
             <span>
-              react<b>calendar</b>
+              KineticNRG
             </span>
           </div>
         </header>
