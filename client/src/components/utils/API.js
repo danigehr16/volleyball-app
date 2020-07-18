@@ -6,12 +6,12 @@ export default {
     return axios.get("/");
   },
   // Gets the events with the given id
-  getEvents: function(_id) {
-    return axios.get("/api/events" + _id);
+  getEvents: function(id) {
+    return axios.get("/api/events" + id);
   },
   // Deletes the events with the given id
-  deleteEvents: function(_id) {
-    return axios.delete("/api/events" + _id);
+  deleteEvents: function(findById) {
+    return axios.delete("/api/events" + findById);
   },
   // Saves a events to the database
   saveEvents: function(eventData) {
