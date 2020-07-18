@@ -1,11 +1,12 @@
 import React from 'react';
-
 import Events from "./components/pages/Events";
+import Nav from "./components/Nav/index";
+
 // import Calendar from "./components/Calendar";
 import './App.css';
 
 class App extends React.Component {
-  
+
   render() {
     return (
       <div className="App">
@@ -14,14 +15,17 @@ class App extends React.Component {
             <span className="icon"></span>
             <span>
               KineticNRG
-            </span>
+                </span>
+                <Nav />
           </div>
         </header>
         <main>
+          <Events />
           {/* <Calendar /> */}
         </main>
-       
+
       </div>
+      
     );
   }
 }

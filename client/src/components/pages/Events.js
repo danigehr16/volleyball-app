@@ -9,7 +9,7 @@ import { Input, TextArea, FormBtn } from "../Form/form";
 
 class Events extends Component {
   state = {
-    Events: []
+    events: []
   };
 
   componentDidMount() {
@@ -18,7 +18,7 @@ class Events extends Component {
 
   loadEvents = () => {
     API.getEvents()
-      .then(res => this.setState({ Events: res.data }))
+      .then(res => this.setState({ events: res.data }))
       .catch(err => console.log(err));
   };
 
@@ -39,7 +39,7 @@ class Events extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1>KineticNRG Calendar</h1>
             </Jumbotron>
             {this.state.events.length ? (
               <List>
@@ -47,7 +47,7 @@ class Events extends Component {
                   <ListItem key={events._id}>
                     <a href={"/models/events.js" + events._id}>
                       <strong>
-                        {Events.title} by {Events.date}
+                        {events.title} by {events.date}
                       </strong>
                     </a>
                     <DeleteBtn />
