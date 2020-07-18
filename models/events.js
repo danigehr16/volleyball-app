@@ -9,6 +9,6 @@ const eventSchema = new Schema({
     // would like to add location
 });
 
-const Event = mongoose.model("Event", eventSchema);
+const event = mongoose.model("Event", eventSchema);
 
-module.exports = Event;
+module.exports = event;
