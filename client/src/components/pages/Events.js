@@ -9,7 +9,10 @@ import { Input, TextArea, FormBtn } from "../Form/form";
 
 class Events extends Component {
   state = {
-    events: []
+    event: [],
+    title: "",
+    date: "",
+    synopsis: ""
   };
 
   componentDidMount() {
@@ -18,8 +21,35 @@ class Events extends Component {
 
   loadEvents = () => {
     API.getEvents()
-      .then(res => this.setState({ events: res.data }))
+      .then(res => this.setState({ events: res.data, title: "", date: "", synopsis: "" }))
       .catch(err => console.log(err));
+  };
+
+  deleteEvents = id => {
+    API.deleteEvents(id)
+    .then(res => this.loadEvents())
+    .catch(err => console.log(err));
+  };
+
+  handleInputChange = (events) => {
+    const {id, value} = events.target;
+    this.setState({
+      [id]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if(this.state.title && this.state.date){
+      API.saveEvent({
+        "title":this.state.title,
+        "date":this.state.date,
+        "synopsis":this.state.synopsis
+  
+      })
+      .then(res => this.loadEvents())
+      .catch(err => console.log(err));
+    }
   };
 
   render() {
@@ -28,36 +58,38 @@ class Events extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Add/Modify or delete an event</h1>
+              <h1> KineticNRG Calendar <b>Add/Modify or delete an event</b></h1>
             </Jumbotron>
             <form>
-              <Input name="title" placeholder="Title (required)" />
-              <Input name="date" placeholder="Date (required)" />
-              <TextArea name="synopsis" placeholder="Synopsis (Optional)" />
-              <FormBtn>Submit Event</FormBtn>
+              <Input
+                value={this.state.title}
+                onChange={this.handleInputChange}
+                name="title"
+                placeholder="Title (required)"
+               />
+
+               <Input
+                value={this.state.date}
+                onChange={this.handleInputChange}
+                name="date"
+                placeholder="Date (required)"
+                />
+
+              <TextArea 
+                value={this.state.synopsis}
+                onChange={this.handleInputChange}
+                name="synopsis"
+                placeholder="Details (Optional)"
+                />
+              
+              <FormBtn
+                disabled={!(this.state.date && this.state.title)}
+                onClick={this.handleFormSubmit}
+                >
+                  Submit Event</FormBtn>
             </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>KineticNRG Calendar</h1>
-            </Jumbotron>
-            {this.state.events.length ? (
-              <List>
-                {this.state.events.map(events => (
-                  <ListItem key={events._id}>
-                    <a href={"/models/events.js" + events._id}>
-                      <strong>
-                        {events.title} by {events.date}
-                      </strong>
-                    </a>
-                    <DeleteBtn />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
+            </Col>
+
         </Row>
       </Container>
     );

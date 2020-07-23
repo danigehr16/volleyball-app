@@ -1,20 +1,20 @@
 import axios from "axios";
 
 export default {
-  // Gets all events
-  getEvents: function() {
-    return axios.get("/");
-  },
+ 
   // Gets the events with the given id
-  getEvents: function(id) {
-    return axios.get("/api/events" + "id");
+  getEvents: function() {
+   return axios.get("/api/events");
+  },
+  getEvent: function(id){
+    return axios.get("/api/events" + id);
   },
   // Deletes the events with the given id
-  deleteEvents: function(findById) {
-    return axios.delete("/api/events" + findById);
+  deleteEvents: function(id) {
+    return axios.delete("/api/events/" + id);
   },
-  // Saves a events to the database
-  saveEvents: function(eventData) {
-    return axios.post("/api/events", eventData);
+  // Saves  events to the database
+  saveEvent: function(eventsData) {
+    return axios.post("/api/events" + eventsData); 
   }
 };
