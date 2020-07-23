@@ -1,10 +1,15 @@
-import React from 'react';
-// import './AlertComponent.css';
+import React, {useState} from 'react';
+import LoginHeader from "./login/LoginHeader/LoginHeader";
+import LoginForm from './login/LoginForm/LoginForm';
+import RegistrationForm from './login/RegistrationForm/index';
+import Home from './login/Home/Home';
+import AlertComponent from './login/AlertComponent/AlertComponent';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Events from "./components/pages/Events";
-import Header from "./login/Header/Header";
+import Header from "./login/LoginHeader/LoginHeader";
 import Nav from "./components/Nav/index";
-import RegistrationForm from './login/RegistrationForm';
+
+
 
 
 
@@ -14,20 +19,28 @@ import './App.css';
 
 
 
-class App extends React.Component {
+function App () {
+  const [title, updateTitle] = useState(null);
+    const [errorMessage, updateErrorMessage] = useState(null);
 
-  render() {
     return (
 
       <Router>
         <div className="App">
-          <Header />
+          <Header title={title} />
           <div className="container d-flex align-items-center flex-column">
             <Switch>
               <Route path="/" exact={true}>
-                <RegistrationForm />
+                <RegistrationForm showError={updateErrorMessage} updateTitle={updateTitle} />
+              </Route>
+              <Route path="/login">
+                <LoginForm showError={updateErrorMessage} updateTitle={updateTitle}/>
+              </Route>
+              <Route path="/home">
+                <Home/>
               </Route>
             </Switch>
+            <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
           </div>
         </div>
       
@@ -61,7 +74,6 @@ class App extends React.Component {
       </Router>
       
     );
-  }
 }
 
 export default App;
