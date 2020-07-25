@@ -5,10 +5,10 @@ const eventSchema = new Schema({
     title: { type: String, required: true},
     date: { type: Date, default: Date.now, require: true},
     // for start and end time i want to put in a drop down box
-    description: { type: String, }
+    synopsis: String
     // would like to add location
 });
 
-const event = mongoose.model("Event", eventSchema);
+const scheduleEvents = mongoose.model("Scheduled Events", eventSchema);
 
-module.exports = event;
+module.exports = scheduleEvents;
