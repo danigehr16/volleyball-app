@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
-import LoginHeader from "./login/LoginHeader/LoginHeader";
+import React from 'react';
+// import Header from "./login/Header/Header";
 import LoginForm from './login/LoginForm/LoginForm';
-import RegistrationForm from './login/RegistrationForm/index';
-import Home from './login/Home/Home';
-import AlertComponent from './login/AlertComponent/AlertComponent';
+// import RegistrationForm from './login/RegistrationForm/index';
+// import Home from './login/Home/Home';
+// import AlertComponent from './login/AlertComponent/AlertComponent';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Events from "./components/pages/Events";
-import Header from "./login/LoginHeader/LoginHeader";
+import Events from "./components/pages/calendarEvents";
+
+// import Header from "./login/Header/Header";
 import Nav from "./components/Nav/index";
 
 
@@ -19,14 +20,15 @@ import './App.css';
 
 
 
-function App () {
-  const [title, updateTitle] = useState(null);
-    const [errorMessage, updateErrorMessage] = useState(null);
+class App extends React.Component {
 
+  render() {
+    // const [title, updateTitle] = useState(null);
+    // const [errorMessage, updateErrorMessage] = useState(null);
     return (
 
       <Router>
-        <div className="App">
+        {/* <div className="App">
           <Header title={title} />
           <div className="container d-flex align-items-center flex-column">
             <Switch>
@@ -42,7 +44,7 @@ function App () {
             </Switch>
             <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
           </div>
-        </div>
+        </div> */}
       
 
       <div className="App">
@@ -57,8 +59,8 @@ function App () {
                 <Nav />
                 <Switch>
                   <Route exact path="/" component={Events} />
-                  <Route exact path="/events" component={Events} />
-                  <Route exact path="/books/:id" component={Events} />
+                  <Route exact path="/scheduleEvents" component={Events} />
+                  <Route exact path="/scheduleEvents/:id" component={Events} />
 
                 </Switch>
               </div>
@@ -66,7 +68,7 @@ function App () {
           </div>
         </header>
         <main>
-          <Events />
+          {/* <home> /> */}
           {/* <Calendar /> */}
         </main>
 
@@ -74,6 +76,7 @@ function App () {
       </Router>
       
     );
+  }
 }
 
 export default App;

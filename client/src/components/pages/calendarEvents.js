@@ -9,7 +9,7 @@ import { Input, TextArea, FormBtn } from "../Form/form";
 
 class Events extends Component {
   state = {
-    event: [],
+    scheduleEvent: [],
     title: "",
     date: "",
     synopsis: ""
@@ -20,31 +20,31 @@ class Events extends Component {
   }
 
   loadEvents = () => {
-    API.getEvents()
-      .then(res => this.setState({ events: res.data, title: "", date: "", synopsis: "" }))
+    API.getScheduleEvents()
+      .then(res => this.setState({ scheduleEvents: res.data, title: "", date: "", synopsis: "" }))
       .catch(err => console.log(err));
   };
 
   deleteEvents = id => {
-    API.deleteEvents(id)
+    API.deleteScheduleEvents(id)
     .then(res => this.loadEvents())
     .catch(err => console.log(err));
   };
 
-  handleInputChange = (events) => {
-    const {id, value} = events.target;
+  handleInputChange = events => {
+    const {name, value} = events.target;
     this.setState({
-      [id]: value
+      [name]: value
     });
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
     if(this.state.title && this.state.date){
-      API.saveEvent({
-        "title":this.state.title,
-        "date":this.state.date,
-        "synopsis":this.state.synopsis
+      API.postScheduleEvents({
+        title: this.state.title,
+        date: this.state.date,
+        synopsis: this.state.synopsis
   
       })
       .then(res => this.loadEvents())
