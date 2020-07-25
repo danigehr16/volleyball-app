@@ -16,4 +16,5 @@ export default {
   // Saves  events to the database
   postScheduleEvents: function(scheduleEventsData) {
     return axios.post("/api/scheduleEvents", scheduleEventsData); 
+  }
 };
