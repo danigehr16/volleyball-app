@@ -1,3 +1,3 @@
 module.exports = {
-  Event: require("./eventsModels")
+  Event: require("./event")
 };

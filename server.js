@@ -18,7 +18,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://kineticnrg:Dragons@16@ds047581.mlab.com:47581/heroku_ngkjc547",
+  process.env.MONGODB_URI || "mongodb://kineticnrg:Dragons%4016@ds047581.mlab.com:47581/heroku_ngkjc547",
   {
     useCreateIndex: true,
     useNewUrlParser: true

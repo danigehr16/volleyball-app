@@ -1,11 +1,11 @@
 
 import React, { Component } from "react";
 import Jumbotron from "../Jumbotron/index";
-import API from "../utils/API";
 import DeleteBtn from "../DeleteBtn/index";
 import { Col, Row, Container } from "../Grid/index";
 import { List, ListItem } from "../List/index";
 import { Input, TextArea, FormBtn } from "../Form/form";
+import API from "../utils/API";
 
 class Events extends Component {
   state = {
@@ -41,7 +41,7 @@ class Events extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if(this.state.title && this.state.date){
-      API.postScheduleEvents({
+      API.saveScheduleEvents({
         title: this.state.title,
         date: this.state.date,
         synopsis: this.state.synopsis
@@ -89,6 +89,27 @@ class Events extends Component {
                   Submit Event</FormBtn>
             </form>
             </Col>
+            {/* <Col size="md-6 sm-12">
+              <Jumbotron>
+                <h1>Current Events</h1>
+              </Jumbotron>
+              {this.state.events.length ? (
+                <List>
+                  {this.state.events.map(event => (
+                <ListItem key={event._id}>
+                  <Link to={"/events/" + event._id}>
+                    <strong>
+                      {event.title} by {event.date}
+                    </strong>
+                  </Link>
+                  <DeleteBtn onClick={() => this.deleteEvents(event._id)} />
+                </ListItem>
+                  ))}
+                </List>
+              ) : (
+                <h3>No Resuts to Display</h3>
+              )}
+            </Col> */}
 
         </Row>
       </Container>

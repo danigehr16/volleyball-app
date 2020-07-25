@@ -1,13 +1,11 @@
 import React from 'react';
 // import Header from "./login/Header/Header";
 import LoginForm from './login/LoginForm/LoginForm';
-// import RegistrationForm from './login/RegistrationForm/index';
+import RegistrationForm from './login/RegistrationForm/index';
 // import Home from './login/Home/Home';
 // import AlertComponent from './login/AlertComponent/AlertComponent';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Events from "./components/pages/calendarEvents";
-
-// import Header from "./login/Header/Header";
 import Nav from "./components/Nav/index";
 
 
@@ -58,9 +56,12 @@ class App extends React.Component {
               <div>
                 <Nav />
                 <Switch>
+               
+                  {/* <Route exact path="/" component={RegistrationForm} /> */}
                   <Route exact path="/" component={Events} />
+                  <Route exact path="/login" component={LoginForm} />
+        
                   <Route exact path="/scheduleEvents" component={Events} />
-                  <Route exact path="/scheduleEvents/:id" component={Events} />
 
                 </Switch>
               </div>
