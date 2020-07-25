@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import Jumbotron from "../Jumbotron/index";
 import DeleteBtn from "../DeleteBtn/index";
 import { Col, Row, Container } from "../Grid/index";
-import { List, ListItem } from "../List/index";
-import { Input, TextArea, FormBtn } from "../Form/form";
+// import { List, ListItem } from "../List/index";
+import { Input, TextArea, FormBtn } from "../Form";
 import API from "../utils/API";
 
 class Events extends Component {
