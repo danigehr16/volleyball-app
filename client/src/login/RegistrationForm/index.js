@@ -24,7 +24,6 @@ function RegistrationForm(props) {
 
     const sendDetailsToServer = () => {
         if(state.email.length && state.password.length) {
-            props.showError(null);
             const payload={
                 "email":state.email,
                 "password":state.password

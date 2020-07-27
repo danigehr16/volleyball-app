@@ -1,13 +1,14 @@
 import React from 'react';
-import LoginForm from './login/LoginForm/LoginForm';
-import RegistrationForm from './login/RegistrationForm/index';
+// import LoginForm from './login/LoginForm/LoginForm';
+// import RegistrationForm from './login/RegistrationForm/index';
 // import Home from './login/Home/Home';
-import AlertComponent from './login/AlertComponent/AlertComponent';
+// import AlertComponent from './login/AlertComponent/AlertComponent';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Events from "./pages/calendarEvents";
 import Nav from "./components/Nav/index";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
+// import Header from "./login/LoginHeader/LoginHeader"
 
 
 
@@ -17,69 +18,21 @@ import NoMatch from "./pages/NoMatch";
 import './App.css';
 
 
-
-
-class App extends React.Component {
-
-  render() {
-    // const [title, updateTitle] = useState(null);
-    // const [errorMessage, updateErrorMessage] = useState(null);
-    return (
-
-      <Router>
-        {/* <div className="App">
-          <Header title={title} />
-          <div className="container d-flex align-items-center flex-column">
-            <Switch>
-              <Route path="/" exact={true}>
-                <RegistrationForm showError={updateErrorMessage} updateTitle={updateTitle} />
-              </Route>
-              <Route path="/login">
-                <LoginForm showError={updateErrorMessage} updateTitle={updateTitle}/>
-              </Route>
-              <Route path="/home">
-                <Home/>
-              </Route>
-            </Switch>
-            <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
-          </div>
-        </div> */}
-      
-
-      <div className="App">
-        <header>
-          <div id="logo">
-            <span className="icon"></span>
-            <span>
-              KineticNRG
-                </span>
-            
-              <div>
-                <Nav />
-                <Switch>
-               
-                  {/* <Route exact path="/" component={RegistrationForm} /> */}
-                  <Route exact path="/" component={Events} />
-                  <Route exact path="/login" component={LoginForm} />
-        
-                  <Route exact path="/scheduleEvents" component={Events} />
-                  <Route component={NoMatch} />
-
-                </Switch>
-              </div>
-            
-          </div>
-        </header>
-        <main>
-          {/* <home> /> */}
-          {/* <Calendar /> */}
-        </main>
-
+function App () {
+  return (
+    <Router>
+      <div>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={Events} />
+          <Route exact path="/events" component={Events} />
+          <Route exact path="/events/:id" component={Detail} />
+          <Route component={NoMatch} />
+        </Switch>
       </div>
-      </Router>
-      
-    );
-  }
+    </Router>
+  )
 }
+
 
 export default App;

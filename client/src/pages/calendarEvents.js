@@ -5,7 +5,7 @@ import DeleteBtn from "../components/DeleteBtn/index";
 import { Col, Row, Container } from "../components/Grid/index";
 import { List, ListItem } from "../components/List/index";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import API from "../components/utils/API";
+import API from "../utils/API";
 import { Link } from "react-router-dom";
 
 
@@ -22,19 +22,20 @@ class Events extends Component {
   }
 
   loadEvents = () => {
-    API.getScheduleEvents()
-      .then(res => this.setState({ scheduleEvents: res.data, title: "", date: "", synopsis: "" }))
+    API.getEvents()
+      .then(res => this.setState({ scheduleEvents: res.data, title: "", date: "", synopsis: "" })
+      )
       .catch(err => console.log(err));
   };
 
-  deleteEvents = id => {
-    API.deleteScheduleEvents(id)
+  deleteEvent = id => {
+    API.deleteEvent(id)
       .then(res => this.loadEvents())
       .catch(err => console.log(err));
   };
 
-  handleInputChange = events => {
-    const { name, value } = events.target;
+  handleInputChange = event => {
+    const { name, value } = event.target;
     this.setState({
       [name]: value
     });
@@ -43,7 +44,7 @@ class Events extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.title && this.state.date) {
-      API.saveScheduleEvents({
+      API.saveEvent({
         title: this.state.title,
         date: this.state.date,
         synopsis: this.state.synopsis
@@ -59,8 +60,8 @@ class Events extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
-            <Jumbotron>
-              <h1> KineticNRG Calendar <b>Add/Modify or delete an event</b></h1>
+            <Jumbotron style={{fontFamily: "fantasy"}}>
+              <h1>Input your Event</h1>
             </Jumbotron>
             <form>
               <Input
@@ -105,7 +106,7 @@ class Events extends Component {
                         {event.title} by {event.date}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteEvents(event._id)} />
+                    <DeleteBtn onClick={() => this.deleteEvent(event._id)} />
                   </ListItem>
                 ))}
               </List>

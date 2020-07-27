@@ -9,9 +9,9 @@ mongoose.connect(
 
 const eventSeed = [
     {
-        title: "",
-        date: "",
-        synopsis: ""
+        title: "Volleybll Tryouts",
+        date: "11/21/2020",
+        synopsis: "Please bring your shoes, water bottle, lunch, and paperwork. tryouts will take place from 8am-3pm."
     }
 ];
 

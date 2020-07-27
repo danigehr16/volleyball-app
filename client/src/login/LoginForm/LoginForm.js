@@ -22,8 +22,8 @@ function LoginForm(props) {
     const handleSubmitClick = (e) => {
         e.preventDefault();
         const payload = {
-            "email": state.email,
-            "password": state.password,
+            "email":state.email,
+            "password":state.password,
         }
         axios.post(API_BASE_URL + 'login', payload)
             .then(function (response) {
@@ -51,7 +51,7 @@ function LoginForm(props) {
 
     const redirectToHome = () => {
         props.updateTitle("Home")
-        props.history.push('/home');
+        props.history.push('/events');
     }
 
     const redirectToRegister = () => {

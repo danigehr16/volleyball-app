@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid/index";
 import Jumbotron from "../components/Jumbotron";
-import API from "../components/utils/API";
+import API from "../utils/API";
 
 class Detail extends Component {
   state = {
@@ -11,7 +11,7 @@ class Detail extends Component {
   // When this component mounts, grab the book with the _id of this.props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
   componentDidMount() {
-    API.getScheduleEvent(this.props.match.params.id)
+    API.getEvent(this.props.match.params.id)
       .then(res => this.setState({ event: res.data }))
       .catch(err => console.log(err));
   }
