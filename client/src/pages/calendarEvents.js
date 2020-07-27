@@ -1,11 +1,13 @@
 
 import React, { Component } from "react";
-import Jumbotron from "../Jumbotron/index";
-import DeleteBtn from "../DeleteBtn/index";
-import { Col, Row, Container } from "../Grid/index";
-// import { List, ListItem } from "../List/index";
-import { Input, TextArea, FormBtn } from "../Form";
-import API from "../utils/API";
+import Jumbotron from "../components/Jumbotron/index";
+import DeleteBtn from "../components/DeleteBtn/index";
+import { Col, Row, Container } from "../components/Grid/index";
+import { List, ListItem } from "../components/List/index";
+import { Input, TextArea, FormBtn } from "../components/Form";
+import API from "../components/utils/API";
+import { Link } from "react-router-dom";
+
 
 class Events extends Component {
   state = {
@@ -27,12 +29,12 @@ class Events extends Component {
 
   deleteEvents = id => {
     API.deleteScheduleEvents(id)
-    .then(res => this.loadEvents())
-    .catch(err => console.log(err));
+      .then(res => this.loadEvents())
+      .catch(err => console.log(err));
   };
 
   handleInputChange = events => {
-    const {name, value} = events.target;
+    const { name, value } = events.target;
     this.setState({
       [name]: value
     });
@@ -40,15 +42,15 @@ class Events extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if(this.state.title && this.state.date){
+    if (this.state.title && this.state.date) {
       API.saveScheduleEvents({
         title: this.state.title,
         date: this.state.date,
         synopsis: this.state.synopsis
-  
+
       })
-      .then(res => this.loadEvents())
-      .catch(err => console.log(err));
+        .then(res => this.loadEvents())
+        .catch(err => console.log(err));
     }
   };
 
@@ -66,51 +68,51 @@ class Events extends Component {
                 onChange={this.handleInputChange}
                 name="title"
                 placeholder="Title (required)"
-               />
+              />
 
-               <Input
+              <Input
                 value={this.state.date}
                 onChange={this.handleInputChange}
                 name="date"
                 placeholder="Date (required)"
-                />
+              />
 
-              <TextArea 
+              <TextArea
                 value={this.state.synopsis}
                 onChange={this.handleInputChange}
                 name="synopsis"
                 placeholder="Details (Optional)"
-                />
-              
+              />
+
               <FormBtn
                 disabled={!(this.state.date && this.state.title)}
                 onClick={this.handleFormSubmit}
-                >
-                  Submit Event</FormBtn>
+              >
+                Submit Event
+                </FormBtn>
             </form>
-            </Col>
-            {/* <Col size="md-6 sm-12">
-              <Jumbotron>
-                <h1>Current Events</h1>
-              </Jumbotron>
-              {this.state.events.length ? (
-                <List>
-                  {this.state.events.map(event => (
-                <ListItem key={event._id}>
-                  <Link to={"/events/" + event._id}>
-                    <strong>
-                      {event.title} by {event.date}
-                    </strong>
-                  </Link>
-                  <DeleteBtn onClick={() => this.deleteEvents(event._id)} />
-                </ListItem>
-                  ))}
-                </List>
-              ) : (
+          </Col>
+          <Col size="md-6 sm-12">
+            <Jumbotron>
+              <h1>Current Events</h1>
+            </Jumbotron>
+            {this.state.scheduleEvent.length ? (
+              <List>
+                {this.state.scheduleEvent.map(event => (
+                  <ListItem key={event._id}>
+                    <Link to={"/event/" + event._id}>
+                      <strong>
+                        {event.title} by {event.date}
+                      </strong>
+                    </Link>
+                    <DeleteBtn onClick={() => this.deleteEvents(event._id)} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
                 <h3>No Resuts to Display</h3>
-              )}
-            </Col> */}
-
+            )}
+          </Col>
         </Row>
       </Container>
     );
