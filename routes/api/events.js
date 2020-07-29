@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const eventControllers = require ("../../controllers/eventControllers");
+const eventControllers = require ("../../controllers/eventsController");
 
 router.route("/")
     .get(eventControllers.findAll)

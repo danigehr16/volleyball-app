@@ -21,11 +21,13 @@ class Events extends Component {
     this.loadEvents();
   }
 
+
+
   loadEvents = () => {
     API.getEvents()
-      .then(res => this.setState({ scheduleEvents: res.data, title: "", date: "", synopsis: "" })
-      )
+      .then(res => this.setState({scheduleEvent: res.data, title: "", date: "", synopsis: ""}))
       .catch(err => console.log(err));
+      
   };
 
   deleteEvent = id => {
